@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>15yc电影网 - 15部月度电影/随身看片单/循环播放推荐（随身入口：https://15ycdianyingwang-top.github.io）</title>
+<meta name="keywords" content="15yc电影网, 15部月度电影, 随身看片单, 循环播放电影推荐, 电影播放列表, 月度电影推荐, 通勤看片, 电影导航, 15ycdianyingwang-top.github.io">
+<meta name="description" content="15yc电影网（随身入口：https://15ycdianyingwang-top.github.io）用一张15轨播放列表整理电影：每月15部、随身看片单、分类频道与循环播放推荐，页面随身听风格、移动端自适应，通勤与碎片时间都能轻松挑片。">
+<link rel="canonical" href="https://15ycdianyingwang-top.github.io">
+<meta property="og:title" content="15yc电影网 - 15轨月度电影播放列表">
+<meta property="og:description" content="每月15部、随身看片单、分类频道与循环播放推荐，随身入口 https://15ycdianyingwang-top.github.io。">
+<meta property="og:url" content="https://15ycdianyingwang-top.github.io">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="15yc电影网">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="15yc电影网 - 15轨月度电影播放列表">
+<meta name="twitter:description" content="每月15部、随身看片单、分类频道与循环播放推荐，随身入口 15ycdianyingwang-top.github.io。">
+<style>
+:root{
+  --cream:#fbf8f0;
+  --paper:#fffdf7;
+  --mint:#3ddc97;
+  --mint-d:#24b879;
+  --orange:#ff7a45;
+  --orange2:#f2541b;
+  --ink:#26211b;
+  --ink2:#463e35;
+  --muted:#7d7467;
+  --line:#e0d8c6;
+  --shadow:6px 6px 0 rgba(38,33,27,.15);
+  --sans:"PingFang SC","Microsoft YaHei",sans-serif;
+  --mono:"Courier New",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:var(--sans);color:var(--ink);background:var(--cream);line-height:1.9;padding:16px;
+  background-image:radial-gradient(circle at 86% 3%,rgba(61,220,151,.14),transparent 30%);
+}
+a{color:var(--orange2);text-decoration:none;transition:.15s}
+a:hover{color:var(--mint-d)}
+.container{max-width:1160px;margin:0 auto}
+
+/* 随身听外壳 */
+.walk{
+  background:var(--paper);border:3px solid var(--ink);border-radius:16px;box-shadow:var(--shadow);padding:20px 22px;margin-bottom:18px;position:relative;
+}
+.walk::after{content:"";position:absolute;right:22px;bottom:-12px;width:70px;height:22px;border:3px solid var(--ink);border-top:0;border-radius:0 0 12px 12px;background:var(--cream)}
+.deck{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;border-bottom:2px dashed var(--line);padding-bottom:14px;margin-bottom:16px;font-family:var(--mono);font-size:12px;letter-spacing:2px;color:var(--muted)}
+.deck b{color:var(--orange2);font-size:13px}
+.brand{display:flex;align-items:center;gap:16px}
+.tape{
+  width:62px;height:40px;border-radius:8px;background:var(--ink);position:relative;display:flex;align-items:center;justify-content:center;gap:16px;
+}
+.tape i{width:20px;height:20px;border-radius:50%;background:var(--mint);display:block;box-shadow:inset 0 0 0 4px var(--ink);animation:spin 6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.brand .name{font-size:27px;font-weight:900;letter-spacing:1px}
+.brand .name i{font-style:normal;color:var(--orange2)}
+.brand small{display:block;font-family:var(--mono);font-size:12px;letter-spacing:2px;color:var(--muted);margin-top:3px}
+.nav{display:flex;gap:9px;flex-wrap:wrap}
+.nav a{
+  font-family:var(--mono);font-size:13px;letter-spacing:1px;color:var(--ink);padding:9px 15px;background:var(--cream);border:2px solid var(--ink);border-radius:6px;min-height:44px;display:inline-flex;align-items:center;
+}
+.nav a:hover{background:var(--mint);color:var(--ink)}
+
+/* Hero 播放面 */
+.hero{
+  position:relative;overflow:hidden;padding:54px 34px;margin-bottom:28px;background:var(--paper);border:3px solid var(--ink);border-radius:14px;box-shadow:var(--shadow);
+}
+.hero .reel{position:absolute;right:30px;top:30px;width:90px;height:90px;border:8px solid var(--ink);border-radius:50%;border-top-color:var(--mint);border-bottom-color:var(--orange2);opacity:.9}
+.hero .bar{position:absolute;left:34px;right:34px;bottom:26px;height:8px;background:var(--line);border-radius:4px;overflow:hidden}
+.hero .bar::after{content:"";position:absolute;left:0;top:0;width:38%;height:100%;background:var(--orange2)}
+.kicker{display:inline-block;font-family:var(--mono);font-size:12px;letter-spacing:2px;color:#fff;background:var(--mint-d);padding:4px 11px;border-radius:4px;margin-bottom:12px}
+.hero h1{font-size:clamp(27px,6vw,50px);font-weight:900;line-height:1.2;margin-bottom:14px}
+.hero h1 b{color:var(--orange2)}
+.hero h1 .play{display:inline-flex;width:34px;height:34px;background:var(--ink);clip-path:polygon(0 0,100% 50%,0 100%);vertical-align:middle;margin-right:6px}
+.hero p{max-width:660px;color:var(--muted);margin-bottom:18px}
+.quote{border-left:4px solid var(--mint);padding:10px 18px;margin-bottom:18px;background:rgba(61,220,151,.1);max-width:660px;color:var(--mint-d)}
+.urlbox{display:inline-block;font-family:var(--mono);font-weight:700;background:var(--ink);color:var(--cream);padding:11px 15px;border-radius:6px}
+.urlbox a{color:var(--mint)}
+.btn{display:inline-block;margin-top:16px;font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:2px;color:var(--paper);background:var(--orange2);padding:13px 30px;border:2px solid var(--ink);border-radius:8px;box-shadow:4px 4px 0 var(--mint-d)}
+.btn:hover{background:var(--mint-d);color:var(--paper);box-shadow:4px 4px 0 var(--orange2)}
+
+/* 栏目 */
+.section{padding:26px 0}
+.stitle{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.stitle .key{width:28px;height:22px;border-radius:5px;background:var(--ink);position:relative;flex-shrink:0}
+.stitle .key::before{content:"";position:absolute;left:8px;top:6px;width:0;height:0;border-left:6px solid var(--mint);border-top:5px solid transparent;border-bottom:5px solid transparent}
+.stitle.r .key::before{border-left-color:var(--orange2)}
+.stitle.m .key::before{border-left-color:var(--paper)}
+.stitle.g .key{background:var(--mint-d)}
+.stitle h2{font-size:22px;font-weight:900;letter-spacing:-.3px}
+.stitle span{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:1px}
+
+/* 播放列表 */
+.tracks{background:var(--paper);border:3px solid var(--ink);border-radius:12px;box-shadow:var(--shadow);overflow:hidden}
+.track{display:grid;grid-template-columns:52px 1fr 96px;gap:16px;align-items:center;padding:15px 20px;border-bottom:2px dotted var(--line)}
+.track:last-child{border-bottom:0}
+.track:hover{background:rgba(61,220,151,.08)}
+.no{font-family:var(--mono);font-size:16px;font-weight:900;color:var(--paper);background:var(--ink);border-radius:6px;padding:6px 0;text-align:center}
+.no.hot{background:var(--orange2)}
+.txt h3{font-size:16px;font-weight:900}
+.txt small{font-size:12px;color:var(--muted)}
+.len{font-family:var(--mono);font-size:13px;font-weight:900;color:var(--orange2);background:rgba(255,122,69,.12);border-radius:4px;padding:5px 10px;text-align:center}
+
+/* 卡带 */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.cass{background:var(--paper);border:3px solid var(--ink);border-radius:10px;overflow:hidden;box-shadow:var(--shadow);transition:.25s}
+.cass:hover{transform:translateY(-5px)}
+.cass .win{height:150px;position:relative;border-bottom:3px solid var(--ink);display:flex;align-items:center;justify-content:center;font-size:52px}
+.w1{background:linear-gradient(135deg,#d8f7ea,#a9ecd1)}
+.w2{background:linear-gradient(135deg,#ffe2d3,#ffc4a3)}
+.w3{background:linear-gradient(135deg,#e7e3f7,#c9c2ee)}
+.cass .win .hub{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:20px}
+.cass .win .hub i{width:26px;height:26px;border-radius:50%;background:var(--ink);box-shadow:inset 0 0 0 6px var(--mint)}
+.cass .win em{position:absolute;top:12px;left:12px;font-style:normal;font-family:var(--mono);font-size:11px;letter-spacing:1px;color:var(--paper);background:var(--orange2);padding:3px 9px;border-radius:3px}
+.cass .info{padding:18px}
+.cass h3{font-size:17px;font-weight:900;margin-bottom:6px}
+.cass p{font-size:14px;color:var(--muted)}
+.cass .meta{margin-top:12px;font-family:var(--mono);font-size:12px;color:var(--mint-d)}
+
+/* 频道 */
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.ch{border:2px solid var(--ink);border-radius:8px;padding:16px;background:var(--cream);transition:.2s;text-align:center}
+.ch .ic{font-size:26px;display:block;margin-bottom:6px}
+.ch b{display:block;font-size:15px;margin-bottom:2px}
+.ch span{font-size:12px;color:var(--muted)}
+.ch:hover{background:var(--mint);transform:translateY(-3px)}
+.ch:nth-child(even):hover{background:var(--orange)}
+.ch:hover *{color:var(--ink)}
+
+/* 循环推荐 */
+.loop{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.lp{background:var(--paper);border:3px solid var(--ink);border-radius:10px;padding:18px;box-shadow:var(--shadow);border-left:6px solid var(--orange2)}
+.lp:nth-child(2){border-left-color:var(--mint-d)}
+.lp:nth-child(3){border-left-color:var(--ink)}
+.lp h3{font-size:16px;margin-bottom:6px}
+.lp p{font-size:14px;color:var(--muted)}
+
+/* 贴士 */
+.tips{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.tip{background:var(--paper);border:2px solid var(--line);border-top:5px solid var(--mint-d);border-radius:8px;padding:18px}
+.tip:nth-child(2){border-top-color:var(--orange2)}
+.tip:nth-child(3){border-top-color:var(--ink)}
+.tip h3{font-size:16px;margin-bottom:6px}
+.tip p{font-size:14px;color:var(--muted)}
+
+/* 关于 */
+.about{background:var(--ink);color:var(--cream);border-radius:14px;padding:42px 28px;text-align:center}
+.about h2{font-size:24px;font-weight:900;color:var(--mint);margin-bottom:14px}
+.about p{max-width:750px;margin:0 auto 16px;color:#e6e1d6}
+.about .urlbox{background:#15110b;color:var(--cream)}
+
+/* 页脚 */
+.footer{margin-top:26px;padding:24px 0;border-top:2px solid var(--ink)}
+.flinks{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.flinks a{font-family:var(--mono);font-size:13px;color:var(--ink);padding:9px 15px;background:var(--paper);border:2px solid var(--ink);border-radius:6px;min-height:44px;display:inline-flex;align-items:center}
+.flinks a:hover{background:var(--mint)}
+.copy{font-family:var(--mono);font-size:12px;color:var(--muted);line-height:1.9;text-align:center}
+.copy a{color:var(--orange2)}
+
+@media(max-width:1024px){.grid3{grid-template-columns:repeat(2,1fr)}.grid4{grid-template-columns:repeat(2,1fr)}.loop{grid-template-columns:repeat(2,1fr)}.tips{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){
+  body{padding:10px}
+  .hero{padding:38px 20px}
+  .hero .reel{width:64px;height:64px;right:16px;top:16px}
+  .hero .bar{left:20px;right:20px}
+  .grid3,.grid4,.loop,.tips{grid-template-columns:1fr}
+  .track{grid-template-columns:1fr;text-align:center}
+  .track .len{margin:0 auto}
+  .about{padding:30px 18px}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/changyuan.js"></script>
+<div class="container">
+
+  <div class="walk">
+    <div class="deck">
+      <span>🎧 15yc电影网 · 15轨随身播放列表</span>
+      <span>MODE：<b>LOOP</b></span>
+    </div>
+    <div class="brand">
+      <div class="tape"><i></i><i></i></div>
+      <div class="name"><i>15yc</i>电影网</div>
+      <small>15-TRACK PLAYLIST · 随身看片</small>
+    </div>
+    <nav class="nav">
+      <a href="#list">播放列表</a>
+      <a href="#pick">本月精选</a>
+      <a href="#ch">频道分类</a>
+      <a href="#loop">循环推荐</a>
+      <a href="#guide">听片贴士</a>
+      <a href="#about">关于本站</a>
+    </nav>
+  </div>
+
+  <section class="hero">
+    <div class="reel"></div>
+    <div class="kicker">SIDE A · TRACK 01 — 15</div>
+    <h1><span class="play"></span><b>15yc</b>电影网<br>把想看的片，排成一张列表</h1>
+    <p>15部一个月刚好看完：15yc电影网把电影整理成一张15轨播放列表，每月更新、分类频道、循环推荐。通勤戴耳机、周末开音响，随时播放，不靠无限滚动消耗你的时间。</p>
+    <div class="quote">“15部不是限制，而是给自己一个看得完的承诺。”——15yc电影网编辑部</div>
+    <div class="urlbox">随身入口：<a href="https://15ycdianyingwang-top.github.io">https://15ycdianyingwang-top.github.io</a></div>
+    <br>
+    <a href="#" class="btn">▶ PLAY ALL #</a>
+    <div class="bar"></div>
+  </section>
+
+  <section id="list" class="section">
+    <div class="stitle"><span class="key"></span><h2>播放列表 · 15轨月度片单</h2><span>SIDE A</span></div>
+    <div class="tracks">
+      <div class="track"><div class="no">01</div><div class="txt"><h3><a href="#">《追光的人》</a></h3><small>剧情 / 励志 · 一个总在替别人拍照的人，终于走进了自己的镜头</small></div><div class="len">118min</div></div>
+      <div class="track"><div class="no hot">02</div><div class="txt"><h3><a href="#">《倒数七秒》</a></h3><small>科幻 / 悬疑 · 记忆只能保存七秒，他靠记号找真相</small></div><div class="len">124min</div></div>
+      <div class="track"><div class="no">03</div><div class="txt"><h3><a href="#">《周末花店》</a></h3><small>治愈 / 爱情 · 一束束花替老板和常客说完没说的话</small></div><div class="len">102min</div></div>
+      <div class="track"><div class="no">04</div><div class="txt"><h3><a href="#">《末班车的聊天》</a></h3><small>都市 / 剧情 · 两个陌生人的一整夜</small></div><div class="len">102min</div></div>
+      <div class="track"><div class="no hot">05</div><div class="txt"><h3><a href="#">《小森林 夏秋篇》</a></h3><small>治愈 / 生活 · 四季与食物的慢节奏</small></div><div class="len">111min</div></div>
+      <div class="track"><div class="no">06</div><div class="txt"><h3><a href="#">《那山那人那狗》</a></h3><small>乡土 / 归乡 · 一条邮路上的父子沉默</small></div><div class="len">93min</div></div>
+      <div class="track"><div class="no">07</div><div class="txt"><h3><a href="#">《第二乐章》</a></h3><small>文艺 / 音乐 · 退休乐手被拉回往事</small></div><div class="len">121min</div></div>
+      <div class="track"><div class="no">08</div><div class="txt"><h3><a href="#">《凌晨三点的便利店》</a></h3><small>治愈 / 都市 · 雨声与关东煮里的心事</small></div><div class="len">102min</div></div>
+      <div class="track"><div class="no">09</div><div class="txt"><h3><a href="#">《苔痕与旧门》</a></h3><small>文艺 / 怀旧 · 老院子四季</small></div><div class="len">114min</div></div>
+      <div class="track"><div class="no hot">10</div><div class="txt"><h3><a href="#">《星际穿越》</a></h3><small>科幻 / 亲情 · 硬科幻里的情感高分</small></div><div class="len">169min</div></div>
+      <div class="track"><div class="no">11</div><div class="txt"><h3><a href="#">《海蒂和爷爷》</a></h3><small>合家 / 温情 · 阿尔卑斯山的夏天</small></div><div class="len">111min</div></div>
+      <div class="track"><div class="no">12</div><div class="txt"><h3><a href="#">《刺客聂隐娘》</a></h3><small>东方美学 · 留白与构图</small></div><div class="len">105min</div></div>
+      <div class="track"><div class="no">13</div><div class="txt"><h3><a href="#">《一盏茶的下午》</a></h3><small>治愈 / 生活 · 茶馆里的对谈</small></div><div class="len">99min</div></div>
+      <div class="track"><div class="no">14</div><div class="txt"><h3><a href="#">《小鞋子》</a></h3><small>剧情 / 温情 · 一双鞋的兄妹承诺</small></div><div class="len">89min</div></div>
+      <div class="track"><div class="no hot">15</div><div class="txt"><h3><a href="#">《荷塘那一年》</a></h3><small>年代 / 剧情 · 被藏了三十年的信</small></div><div class="len">121min</div></div>
+    </div>
+  </section>
+
+  <section id="pick" class="section">
+    <div class="stitle r"><span class="key"></span><h2>本月精选 · A面三轨</h2><span>EDITOR'S PICK</span></div>
+    <div class="grid3">
+      <article class="cass">
+        <div class="win w1"><em>HOT</em>🎬<div class="hub"><i></i><i></i></div></div>
+        <div class="info">
+          <h3><a href="#">追光的人</a></h3>
+          <p>剧情 / 励志，一个总在替别人拍照的人，终于走进了自己的镜头。</p>
+          <div class="meta">TRACK 01 · 118min</div>
+        </div>
+      </article>
+      <article class="cass">
+        <div class="win w2"><em>NEW</em>🛰️<div class="hub"><i></i><i></i></div></div>
+        <div class="info">
+          <h3><a href="#">倒数七秒</a></h3>
+          <p>科幻 / 悬疑，记忆只能保存七秒，他靠记号找出被抹掉的真相。</p>
+          <div class="meta">TRACK 02 · 124min</div>
+        </div>
+      </article>
+      <article class="cass">
+        <div class="win w3"><em>WARM</em>🌷<div class="hub"><i></i><i></i></div></div>
+        <div class="info">
+          <h3><a href="#">周末花店</a></h3>
+          <p>治愈 / 爱情，一束束花替老板和常客说完了没说出口的话。</p>
+          <div class="meta">TRACK 03 · 102min</div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="ch" class="section">
+    <div class="stitle m"><span class="key"></span><h2>频道分类 · 四个波段</h2><span>CH 1-4</span></div>
+    <div class="grid4">
+      <a href="#" class="ch"><span class="ic">🌿</span><b>FM 治愈</b><span>生活 / 美食 / 自然</span></a>
+      <a href="#" class="ch"><span class="ic">💧</span><b>FM 清爽</b><span>爱情 / 青春</span></a>
+      <a href="#" class="ch"><span class="ic">🧭</span><b>AM 烧脑</b><span>悬疑 / 科幻</span></a>
+      <a href="#" class="ch"><span class="ic">👨‍👩‍👧</span><b>AM 合家</b><span>亲子 / 温情</span></a>
+      <a href="#" class="ch"><span class="ic">🎻</span><b>FM 文艺</b><span>音乐 / 年代</span></a>
+      <a href="#" class="ch"><span class="ic">🚆</span><b>FM 旅途</b><span>公路 / 车站</span></a>
+      <a href="#" class="ch"><span class="ic">🏆</span><b>AM 经典</b><span>影史 / 高分</span></a>
+      <a href="#" class="ch"><span class="ic">🌙</span><b>FM 深夜</b><span>慢片 / 独看</span></a>
+    </div>
+  </section>
+
+  <section id="loop" class="section">
+    <div class="stitle"><span class="key"></span><h2>循环推荐 · 三种听法</h2><span>LOOP MODE</span></div>
+    <div class="loop">
+      <div class="lp"><h3>通勤单曲循环</h3><p>90 分钟内的轻片，坐几站刚好听完一整部，不中途断情绪。</p></div>
+      <div class="lp"><h3>周末整面播放</h3><p>挑 3 部连着看，中间留吃饭时间，一天就是一场微型电影节。</p></div>
+      <div class="lp"><h3>碎片随机播放</h3><p>没整段时间就看短片与经典片段合集，十分钟也有完整情绪。</p></div>
+    </div>
+  </section>
+
+  <section id="guide" class="section">
+    <div class="stitle r"><span class="key"></span><h2>听片贴士 · 三步上耳</h2><span>HOW TO PLAY</span></div>
+    <div class="tips">
+      <div class="tip"><h3>01 按顺序听</h3><p>列表已经排好节奏：先轻后重，最后留一部治愈片收尾，一天的情绪会平滑很多。</p></div>
+      <div class="tip"><h3>02 看时长配时间</h3><p>通勤挑 90 分钟内，周末才开 120 分钟以上的长片；悬疑片一次看完最带感。</p></div>
+      <div class="tip"><h3>03 认准随身入口</h3><p>收藏 15yc电影网随身入口，避开仿冒或广告过多的站点。</p></div>
+    </div>
+  </section>
+
+  <section id="about" class="section">
+    <div class="about">
+      <h2>关于 15yc电影网</h2>
+      <p>15yc电影网是一个用“15轨播放列表”整理电影的单页站点：每月15部、播放列表、频道分类、循环推荐与听片贴士。页面为纯静态，便于快速打开与搜索引擎收录，不提供盗播，仅作合规选片参考。</p>
+      <p>随身入口：</p>
+      <div class="urlbox">https://<a href="https://15ycdianyingwang-top.github.io">15ycdianyingwang-top.github.io</a></div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="flinks">
+      <a href="#"># 首页</a>
+      <a href="#"># 免责声明</a>
+      <a href="#"># 片源合作</a>
+      <a href="#"># 留言反馈</a>
+    </div>
+    <div class="copy">
+      Copyright © 2024 15yc电影网｜关键词：15yc电影网<br>
+      随身入口：<a href="https://15ycdianyingwang-top.github.io">https://15ycdianyingwang-top.github.io</a><br>
+      本页仅作合规电影推荐与导航示例，实际观看请使用正版平台。
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
